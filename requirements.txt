@@ -1,0 +1,12 @@
+# --- For-Bot-Working --------- #
+pyrogram
+TgCrypto
+pyromod==1.5
+python-dotenv
+requests
+pyshorteners
+# --- For-Database ------------ #
+pymongo
+dnspython
+# --- For-Web-Response ------- #
+aiohttp
