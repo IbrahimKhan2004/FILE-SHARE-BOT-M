@@ -8,7 +8,7 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-urlshortx_api_token = os.environ.get('URL_SHORTENER_API_KEY')
+urlshortx_api_token = os.environ.get('98cdeecfc256c372741754665e292c9689328f29')
 
 def shorten_url(url):
     try:
