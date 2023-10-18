@@ -50,6 +50,9 @@ async def new_post(client: Client, message: Message):
     # Extract caption and file size
     caption = message.caption if message.caption else "No caption."
     file_size = message.file_size if message.file_size else "File size not available."
+
+    if message.media:
+        file_size = message.media.file_size
     
     # Create a "Get File" button
     get_file_button = InlineKeyboardButton("Get File", url=shorty)
