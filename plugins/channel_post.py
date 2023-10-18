@@ -46,32 +46,10 @@ async def new_post(client: Client, message: Message):
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
     shorty = tiny(shorten_url(link))
-    
-    # Extract caption and file size
-    caption = message.caption if message.caption else "No caption."
-    file_size = message.file_size if message.file_size else "File size not available."
-
-    if message.media:
-        file_size = message.media.file_size
-    
-    # Create a "Get File" button
-    get_file_button = InlineKeyboardButton("Get File", url=shorty)
-    
-    # Construct the message with the caption, file size, and the "Get File" button
-    message_text = f"<b>Caption:</b>\n{caption}\n<b>File Size:</b> {file_size} bytes"
-    
-    # Create an inline keyboard with the "Get File" button
-    reply_markup = InlineKeyboardMarkup([[get_file_button]])
-    
-    # Send the message with the button to the specified channel
-    await client.send_message(-1001571229425, message_text, reply_markup=reply_markup, disable_web_page_preview=True)
-    
-    # Add the "Get File" button to the original message in the channel
+    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Get File", url=f'{shorty}')]])
     try:
         await message.edit_reply_markup(reply_markup)
     except Exception as e:
         print(e)
         pass
-
-
 
