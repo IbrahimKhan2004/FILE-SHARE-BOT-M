@@ -45,7 +45,7 @@ async def new_post(client: Client, message: Message):
     string = f"get-{converted_id}"
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
-    shorty = tiny(shorten_url(link)
+    shorty = tiny(shorten_url(link))
     
     # Extract caption and file size
     caption = message.caption if message.caption else "No caption."
