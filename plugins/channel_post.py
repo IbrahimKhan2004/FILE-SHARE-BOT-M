@@ -28,7 +28,7 @@ async def channel_post(client: Client, message: Message):
     link = f"https://t.me/{client.username}?start={base64_string}"
     shorty = tiny(shorten_url(link))
 
-    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Get File", url=f'{shorty}')]])
+    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔗 Get File", url=f'{shorty}')]])
 
     await reply_text.edit(f"<b>Here is your link</b>\n\n{shorty}", reply_markup=reply_markup, disable_web_page_preview = True)
 
@@ -56,7 +56,7 @@ async def new_post(client: Client, message: Message):
 
         await client.send_message(
             NEW_CAPTIONS_CHANNEL_ID,
-            f"<b>📂 Name: {caption}\n\n📦 Size: {humanbytes(size.file_size)}\n\n⌛️ Duration :{TimeFormatter(size.duration * 1000)}</b>", reply_markup=reply_markup, disable_web_page_preview = True
+            f"<b>📂 Name: {caption}\n\n📦 Size: {humanbytes(size.file_size)}\n\n⌛️ Duration : {TimeFormatter(size.duration * 1000)}</b>", reply_markup=reply_markup, disable_web_page_preview = True
         )
     except Exception as e:
         print(e)
