@@ -56,7 +56,7 @@ async def new_post(client: Client, message: Message):
 
         await client.send_message(
             NEW_CAPTIONS_CHANNEL_ID,
-            f"Join Backup Channel :- @BackupOfHighQualityRips\n\n<b>📂 Name: {caption}\n\n📦 Size: {humanbytes(size.file_size)}\n\n⌛️ Duration : {TimeFormatter(size.duration * 1000)}</b>", reply_markup=reply_markup, disable_web_page_preview = True
+            f"<b>Join Backup Channel :- @BackupOfHighQualityRips\n\n<b>📂 Name: {caption}\n\n📦 Size: {humanbytes(size.file_size)}\n\n⌛️ Duration : {TimeFormatter(size.duration * 1000)}</b>", reply_markup=reply_markup, disable_web_page_preview = True
         )
     except Exception as e:
         print(e)
