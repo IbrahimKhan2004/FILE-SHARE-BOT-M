@@ -48,7 +48,7 @@ async def new_post(client: Client, message: Message):
     shorty = tiny(shorten_url(link))
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔗 Get File", url=f'{shorty}')]])
     try:
-        await asyncio.sleep(5)
+        await asyncio.sleep(15)
         
         await message.edit_reply_markup(reply_markup)
 
