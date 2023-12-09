@@ -8,33 +8,27 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-urlshortx_api_token = os.environ.get('URL_SHORTENER_API_KEY')
+urlshortx_api_token = os.getenv("URL_SHORTENER_API_KEY")
+s = pyshorteners.Shortener()
+
 
 def shorten_url(url):
+    """Shortens a URL using URLShortx first, then TinyURL."""
     try:
+        # Shorten URL with URLShortx
         api_url = f"https://urlshortx.com/api"
-        params = {
-            "api": urlshortx_api_token,
-            "url": url,
-            "format": "text"
-        }
+        params = {"api": urlshortx_api_token, "url": url, "format": "text"}
         response = requests.get(api_url, params=params)
         if response.status_code == 200:
-            return response.text.strip()
+            urlshortx_url = response.text.strip()
         else:
-            logger.error(
-                f"URL shortening failed. Status code: {response.status_code}, Response: {response.text}")
-            return url
+            raise Exception("URL shortening with URLShortx failed.")
+
+        # Shorten URLShortx URL with TinyURL
+        short_url = s.tinyurl.short(urlshortx_url)
+        logger.info(f'Shortened {url} to {short_url} using URLShortx and TinyURL.')
+        return short_url
     except Exception as e:
         logger.error(f"URL shortening failed: {e}")
         return url
-    
-def tiny(long_url):
-    s = pyshorteners.Shortener()
-    try:
-        short_url = s.tinyurl.short(long_url)
-        logger.info(f'tinyfied {long_url} to {short_url}')
-        return short_url
-    except Exception:
-        logger.error(f'Failed to shorten URL: {long_url}')
-        return long_url
+        
