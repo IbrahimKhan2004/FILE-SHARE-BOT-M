@@ -2,7 +2,7 @@ import os
 import requests
 import logging
 import pyshorteners
-import tiny
+from tiny import shorten
 from dotenv import load_dotenv
 
 load_dotenv()
